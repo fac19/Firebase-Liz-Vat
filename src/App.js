@@ -3,23 +3,36 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  // const [name, setName] = React.useState({});  
+  const [data, setData] = React.useState({});
+
+  const dataObj = {};
+
+  const emailChange = (event) => {
+    dataObj.email = event.target.value; 
+  }
+  const nameChange = (event) => {
+    dataObj.name = event.target.value; 
+  }
+
+  const handleSubmission = () => {
+    setData(dataObj)
+  }
+
+  React.useEffect(()=>{
+    console.log(data)
+  }, [data])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form>
+      <label>Name:
+        <input type="text" onChange={nameChange}></input>
+      </label>
+      <label>Email:
+        <input type="email" onChange={emailChange}></input>
+      </label>
+      <input type="submit" onClick={handleSubmission}></input>
+    </form>
   );
 }
 
